@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Helpers\GetFullUser;
 use App\User;
 use File;
-use Storage;
+use Illuminate\Support\Facades\Storage;
 use Validator;
 
 class UserController extends Controller

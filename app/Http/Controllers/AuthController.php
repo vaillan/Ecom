@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Helpers\GetFullUser;
 use App\User;
 use Validator;
-
+use Illuminate\Support\Facades\Storage;
 class AuthController extends Controller {
 
     /**
@@ -119,7 +119,6 @@ class AuthController extends Controller {
                 return response()->json(['valid' => true, 'message' => 'datos actualizados correctamente', 'user' => $getFullUser->getUserInfo($user)],200);
             }
         }
-
         
     }
 
