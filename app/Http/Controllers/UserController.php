@@ -11,7 +11,6 @@ use Validator;
 
 class UserController extends Controller
 {
-    //
     public function updateUserImage(Request $request) {
         $user = User::find($request->input('id'));
 

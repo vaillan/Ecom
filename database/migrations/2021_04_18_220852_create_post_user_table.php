@@ -18,8 +18,8 @@ class CreatePostUserTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->float('budget_minimum');
             $table->float('budget_maximum');
-            $table->dateTime('init_date');
-            $table->dateTime('end_date');
+            $table->date('init_date');
+            $table->date('end_date');
             $table->string('divisa_budget_minimum');
             $table->string('divisa_budget_maximum');
             $table->text('description');

@@ -29,5 +29,5 @@ Route::group([
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 
     Route::post('/updateImage', [UserController::class, 'updateUserImage']);
-
+    Route::post('/post-user', [App\Http\Controllers\PostUserController\PostUserController::class, 'postUser']);
 });

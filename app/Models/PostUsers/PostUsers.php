@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models\PostUsers;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+
+class PostUsers extends Model
+{
+    use Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id',
+        'budget_minimum',
+        'budget_maximum',
+        'init_date',
+        'end_date',
+        'divisa_budget_minimum',
+        'divisa_budget_maximum',
+        'description',
+    ];
+}

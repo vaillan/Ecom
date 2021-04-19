@@ -58,16 +58,16 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function posts() {
-        return $this->hasManyThrough('App\Post', 'user_id');
+    public function postUser() {
+        return $this->hasManyThrough('App\Models\PostUsers\PostUsers', 'user_id');
     }
     
-    public function likes(){
-        return $this->hasMany('App\Like', 'user_id');
-    }
+    // public function likes(){
+    //     return $this->hasMany('App\Like', 'user_id');
+    // }
 
-    public function comments(){
-        return $this->hasMany('App\Comment', 'user_id');
-    }
+    // public function comments(){
+    //     return $this->hasMany('App\Comment', 'user_id');
+    // }
 
 }
