@@ -23,7 +23,7 @@ class PostUserController extends Controller
             'divisa_budget_minimum' => 'required',
             'divisa_budget_maximum' => 'required',
         ]);
-
+        
         if($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }else {
