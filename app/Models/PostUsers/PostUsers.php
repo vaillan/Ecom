@@ -14,6 +14,8 @@ class PostUsers extends Model
      *
      * @var array
      */
+    protected $table = 'post_user';
+    
     protected $fillable = [
         'user_id',
         'budget_minimum',
