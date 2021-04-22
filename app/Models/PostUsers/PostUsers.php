@@ -26,4 +26,11 @@ class PostUsers extends Model
         'divisa_budget_maximum',
         'description',
     ];
+    /**
+     * Get the user that owns the comment.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 }

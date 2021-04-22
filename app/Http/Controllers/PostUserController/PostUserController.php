@@ -46,8 +46,8 @@ class PostUserController extends Controller
     }
 
     public function getPostUser($id) {
-        $posts_user = PostUsers::all()->where('user_id',$id);
-        if($posts_user) { 
+        $posts_user = PostUsers::with('user')->where('user_id',$id)->get();
+        if($posts_user) {
             return response()->json(['valid' => true, 'posts_user' => $posts_user],200);
         }else {
             return response()->json('failed',500);
