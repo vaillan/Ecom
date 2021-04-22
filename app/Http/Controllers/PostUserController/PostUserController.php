@@ -43,6 +43,14 @@ class PostUserController extends Controller
             PostUsers::create($query);
             return response()->json(['valid' => true, 'message' => 'post wass created successfully'],200);
         }
+    }
 
+    public function getPostUser($id) {
+        $posts_user = PostUsers::all()->where('user_id',$id);
+        if($posts_user) { 
+            return response()->json(['valid' => true, 'posts_user' => $posts_user],200);
+        }else {
+            return response()->json('failed',500);
+        }
     }
 }

@@ -29,5 +29,8 @@ Route::group([
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 
     Route::post('/updateImage', [UserController::class, 'updateUserImage']);
+
+    //post_user
     Route::post('/post-user', [App\Http\Controllers\PostUserController\PostUserController::class, 'postUser']);
+    Route::get('/get-posts-user/{id}', [App\Http\Controllers\PostUserController\PostUserController::class, 'getPostUser']);
 });
