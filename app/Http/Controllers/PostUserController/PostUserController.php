@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PostUsers\PostUsers;
 use Validator;
-
+use App\Helpers\GetFullUser;
 
 class PostUserController extends Controller
 {
@@ -46,9 +46,30 @@ class PostUserController extends Controller
     }
 
     public function getPostUser($id) {
-        $posts_user = PostUsers::with('user')->where('user_id',$id)->get();
-        if($posts_user) {
-            return response()->json(['valid' => true, 'posts_user' => $posts_user],200);
+        $array_posts_user = PostUsers::with('user')->where('user_id',$id)->orderBy('id', 'desc')->get();
+        $new_array_posts_user = array();
+        $getFullUser = new GetFullUser();
+
+        foreach($array_posts_user as $post_user) {
+            $post = [ 
+                'budget_maximum' => $post_user->budget_maximum,
+                'budget_minimum' => $post_user->budget_minimum,
+                'created_at' => $post_user->created_at,
+                'description' => $post_user->description,
+                'divisa_budget_maximum' => $post_user->divisa_budget_maximum,
+                'divisa_budget_minimum' => $post_user->divisa_budget_minimum,
+                'end_date' => $post_user->end_date,
+                'id' => $post_user->id,
+                'init_date' => $post_user->init_date,
+                'updated_at' => $post_user->updated_at,
+                'user' => $user = $getFullUser->getUserInfo($post_user->user),
+                'user_id' => $post_user->user_id,
+
+            ];
+            array_push($new_array_posts_user, $post);
+        }
+        if($new_array_posts_user) {
+            return response()->json(['valid' => true, 'posts_user' => $new_array_posts_user],200);
         }else {
             return response()->json('failed',500);
         }
