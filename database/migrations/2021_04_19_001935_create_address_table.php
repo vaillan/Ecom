@@ -16,9 +16,9 @@ class CreateAddressTable extends Migration
         Schema::create('address', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('post_user_id');
-            $table->unsignedBigInteger('post_client_id');
-            $table->string('country')->nullable();
+            $table->unsignedBigInteger('post_user_id')->nullable(1);
+            $table->unsignedBigInteger('post_client_id')->nullable(1);
+            $table->string('country')->nullable(1);
             $table->string('city');
             $table->string('address');
             $table->foreign('user_id')->references('id')->on('users');

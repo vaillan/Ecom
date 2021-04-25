@@ -5,6 +5,7 @@ namespace App\Http\Controllers\PostUserController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PostUsers\PostUsers;
+use App\Models\Address\Address;
 use Validator;
 use App\Helpers\GetFullUser;
 
@@ -22,6 +23,9 @@ class PostUserController extends Controller
             'end_date' => 'required',
             'divisa_budget_minimum' => 'required',
             'divisa_budget_maximum' => 'required',
+            'country' => 'required',
+            'city' => 'required',
+            'address' => 'required',
         ]);
         
         if($validator->fails()) {
@@ -29,7 +33,8 @@ class PostUserController extends Controller
         }else {
             $dt1 = $carbon->parse($request->input('init_date'))->locale('English');
             $dt2 = $carbon->parse($request->input('end_date'))->locale('English');
-            $query = [
+            
+            $post_user = PostUsers::create([
                 'user_id' => $request->input('user_id'),
                 'budget_minimum' => $request->input('budget_minimum'),
                 'budget_maximum' => $request->input('budget_maximum'),
@@ -38,10 +43,19 @@ class PostUserController extends Controller
                 'divisa_budget_minimum' => $request->input('divisa_budget_minimum'),
                 'divisa_budget_maximum' => $request->input('divisa_budget_maximum'),
                 'description' => $request->input('description'),
-            ];
+            ]);
             
-            PostUsers::create($query);
-            return response()->json(['valid' => true, 'message' => 'post wass created successfully'],200);
+            $query = Address::create([
+                'user_id' => $request->input('user_id'),
+                'post_user_id' => $post_user->id,
+                'country' => $request->input('country'),
+                'city' => $request->input('city'),
+                'address' => $request->input('address'),
+            ]);
+            
+            if($query) {
+                return response()->json(['valid' => true, 'message' => 'post wass created successfully'],200);
+            }
         }
     }
 
@@ -66,12 +80,12 @@ class PostUserController extends Controller
                 'user_id' => $post_user->user_id,
 
             ];
-            array_push($new_array_posts_user, $post);
+            $new_array_posts_user[] = $post;
         }
         if($new_array_posts_user) {
-            return response()->json(['valid' => true, 'posts_user' => $new_array_posts_user],200);
+            return response()->json(['valid' => true,'posts_user' => $new_array_posts_user],200);
         }else {
-            return response()->json('failed',500);
+            return response()->json(['failed' => false],200);
         }
     }
 }
