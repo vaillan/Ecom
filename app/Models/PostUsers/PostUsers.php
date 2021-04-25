@@ -33,4 +33,8 @@ class PostUsers extends Model
     {
         return $this->belongsTo('App\User', 'user_id');
     }
+    
+    public function address() {
+        return $this->hasOne('App\Models\Address\Address', 'post_user_id');
+    }
 }

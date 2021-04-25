@@ -60,12 +60,11 @@ class PostUserController extends Controller
     }
 
     public function getPostUser($id) {
-        $array_posts_user = PostUsers::with('user')->where('user_id',$id)->orderBy('id', 'desc')->get();
+        $array_posts_user = PostUsers::with('user','address')->where('user_id',$id)->orderBy('id', 'desc')->get();
         $new_array_posts_user = array();
         $getFullUser = new GetFullUser();
-
         foreach($array_posts_user as $post_user) {
-            $post = [ 
+            $post = [
                 'budget_maximum' => $post_user->budget_maximum,
                 'budget_minimum' => $post_user->budget_minimum,
                 'created_at' => $post_user->created_at,
@@ -78,7 +77,11 @@ class PostUserController extends Controller
                 'updated_at' => $post_user->updated_at,
                 'user' => $user = $getFullUser->getUserInfo($post_user->user),
                 'user_id' => $post_user->user_id,
-
+                'post_user_id' =>  $post_user->address->post_user_id,
+                'post_client_id' => $post_user->address->post_client_id,
+                'country' => $post_user->address->country,
+                'city' => $post_user->address->city,
+                'address' => $post_user->address->address,
             ];
             $new_array_posts_user[] = $post;
         }
