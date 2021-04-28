@@ -77,11 +77,7 @@ class PostUserController extends Controller
                 'updated_at' => $post_user->updated_at,
                 'user' => $user = $getFullUser->getUserInfo($post_user->user),
                 'user_id' => $post_user->user_id,
-                'post_user_id' =>  $post_user->address->post_user_id,
-                'post_client_id' => $post_user->address->post_client_id,
-                'country' => $post_user->address->country,
-                'city' => $post_user->address->city,
-                'address' => $post_user->address->address,
+                'address' =>  $post_user->address,
             ];
             $new_array_posts_user[] = $post;
         }
