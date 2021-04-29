@@ -24,6 +24,7 @@ class CreatePostUserTable extends Migration
             $table->string('divisa_budget_maximum');
             $table->text('description');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

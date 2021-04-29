@@ -22,6 +22,7 @@ class CreatePostClientTable extends Migration
             $table->float('precio');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('image_id')->references('id')->on('images');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -23,9 +23,10 @@ class PostUserController extends Controller
             'end_date' => 'required',
             'divisa_budget_minimum' => 'required',
             'divisa_budget_maximum' => 'required',
-            'country' => 'required',
+            'capital' => 'required',
             'city' => 'required',
             'address' => 'required',
+            'country' => 'required',
         ]);
         
         if($validator->fails()) {
@@ -48,9 +49,10 @@ class PostUserController extends Controller
             $query = Address::create([
                 'user_id' => $request->input('user_id'),
                 'post_user_id' => $post_user->id,
-                'country' => $request->input('country'),
+                'capital' => $request->input('capital'),
                 'city' => $request->input('city'),
                 'address' => $request->input('address'),
+                'country' => $request->input('country'),
             ]);
             
             if($query) {

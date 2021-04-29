@@ -14,13 +14,14 @@ class Address extends Model
      */
     protected $table = 'address';
 
-     protected $fillable = [
+    protected $fillable = [
         'user_id',
         'post_user_id',
         'post_client_id',
         'country',
         'city',
         'address',
+        'capital',
     ];
     /**
      * Get the address that owns the comment.
