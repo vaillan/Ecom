@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PostUsers\PostUsers;
 use App\Models\Address\Address;
+use App\Models\Mexico_address\Mexico_address;
 use Validator;
 use App\Helpers\GetFullUser;
 
@@ -24,7 +25,7 @@ class PostUserController extends Controller
             'divisa_budget_minimum' => 'required',
             'divisa_budget_maximum' => 'required',
             'capital' => 'required',
-            'city' => 'required',
+            'city_id' => 'required',
             'address' => 'required',
             'country' => 'required',
         ]);
@@ -45,14 +46,16 @@ class PostUserController extends Controller
                 'divisa_budget_maximum' => $request->input('divisa_budget_maximum'),
                 'description' => $request->input('description'),
             ]);
+
+            $mexico_addres = Mexico_address::find($request->input('city_id'));
             
             $query = Address::create([
                 'user_id' => $request->input('user_id'),
                 'post_user_id' => $post_user->id,
-                'capital' => $request->input('capital'),
-                'city' => $request->input('city'),
+                'capital' => $mexico_addres->capital,
+                'city' => $mexico_addres->city,
                 'address' => $request->input('address'),
-                'country' => $request->input('country'),
+                'country' => $mexico_addres->country,
             ]);
             
             if($query) {

@@ -37,5 +37,4 @@ Route::group([
     //Mexico address
     Route::get('/get-mexico-address', [App\Http\Controllers\MexicoAddressController\MexicoAddressController::class, 'getMexicoAddress']);
 
-
 });

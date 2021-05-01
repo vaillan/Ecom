@@ -5,7 +5,6 @@ namespace App\Http\Controllers\MexicoAddressController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Mexico_address\Mexico_address as MexicoAddress;
-
 class MexicoAddressController extends Controller
 {
     public function getMexicoAddress() {

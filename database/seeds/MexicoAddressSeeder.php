@@ -29878,14 +29878,17 @@ class MexicoAddressSeeder extends Seeder
                     ),
             ),
           );
-          
-          
+
+
+
           foreach ($arraymx as $value) {
               # code...
               DB::table('mexico_address')->insert([
                 'city' => $value['tooltip']['city'],
                 'country' => $value['tooltip']['country'],
                 'capital' => $value['tooltip']['capital'],
+                'created_at' => date('Y-m-d H:m:s'),
+                'updated_at' => date('Y-m-d H:m:s'),
             ]);
           }
 
