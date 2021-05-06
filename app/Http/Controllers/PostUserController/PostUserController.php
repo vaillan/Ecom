@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PostUsers\PostUsers;
 use App\Models\Address\Address;
-use App\Models\Mexico_address\Mexico_address;
+use App\Models\Estado\Estado;
+use App\Models\Municipio\Municipio;
+use App\Models\Localidad\Localidad;
+
 use Validator;
 use App\Helpers\GetFullUser;
 
@@ -24,10 +27,9 @@ class PostUserController extends Controller
             'end_date' => 'required',
             'divisa_budget_minimum' => 'required',
             'divisa_budget_maximum' => 'required',
-            'capital' => 'required',
-            'city_id' => 'required',
+            'localidad_id' => 'required',
             'address' => 'required',
-            'country' => 'required',
+            
         ]);
         
         if($validator->fails()) {
@@ -47,15 +49,20 @@ class PostUserController extends Controller
                 'description' => $request->input('description'),
             ]);
 
-            $mexico_addres = Mexico_address::find($request->input('city_id'));
-            
+            $mexico = Localidad::with(['municipio' => function($query) {
+                $query->with('estado');
+            }])->find($request->input('localidad_id'));
+
             $query = Address::create([
                 'user_id' => $request->input('user_id'),
                 'post_user_id' => $post_user->id,
-                'capital' => $mexico_addres->capital,
-                'city' => $mexico_addres->city,
+                'clave' => $mexico->clave,
+                'estado' => $mexico->municipio->estado->nombre,
+                'localidad' => $mexico->nombre,
+                'municipio' => $mexico->municipio->nombre,
+                'lat' => $mexico->lat,
+                'lng' => $mexico->lng,
                 'address' => $request->input('address'),
-                'country' => $mexico_addres->country,
             ]);
             
             if($query) {

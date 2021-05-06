@@ -18,10 +18,11 @@ class Address extends Model
         'user_id',
         'post_user_id',
         'post_client_id',
-        'country',
-        'city',
+        'clave',
+        'estado',
+        'localidad',
+        'municipio',
         'address',
-        'capital',
     ];
     /**
      * Get the address that owns the comment.

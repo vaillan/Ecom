@@ -35,6 +35,5 @@ Route::group([
     Route::get('/get-posts-user/{id}', [App\Http\Controllers\PostUserController\PostUserController::class, 'getPostUser']);
 
     //Mexico address
-    Route::get('/get-mexico-address', [App\Http\Controllers\MexicoAddressController\MexicoAddressController::class, 'getMexicoAddress']);
-
+    Route::post('/search-mexico-localidades', 'LocalidadController\LocalidadController@searchMexicoLocalidades');
 });

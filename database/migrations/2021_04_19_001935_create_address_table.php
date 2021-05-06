@@ -18,9 +18,12 @@ class CreateAddressTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('post_user_id')->nullable(1);
             $table->unsignedBigInteger('post_client_id')->nullable(1);
-            $table->string('country')->nullable(1);
-            $table->string('capital')->nullable(1);
-            $table->string('city');
+            $table->string('clave')->nullable(1);
+            $table->string('estado')->nullable(1);
+            $table->string('localidad')->nullable(1);
+            $table->string('municipio');
+            $table->string('lat');
+            $table->string('lng');
             $table->string('address');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('post_user_id')->references('id')->on('post_user');

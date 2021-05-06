@@ -55,9 +55,9 @@ return [
             'visibility' => 'public',
         ],
 
-        'users' => [
+        'json' => [
             'driver' => 'local',
-            'root' => storage_path('app/users'),
+            'root' => storage_path('app/json'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
@@ -83,20 +83,9 @@ return [
 
     ],
 
-     /*
-    |--------------------------------------------------------------------------
-    | Symbolic Links
-    |--------------------------------------------------------------------------
-    |
-    | Here you may configure the symbolic links that will be created when the
-    | `storage:link` Artisan command is executed. The array keys should be
-    | the locations of the links and the values should be their targets.
-    |
-    */
-
     'links' => [
         public_path('storage') => storage_path('app/public'),
-        public_path('storage') => storage_path('app/users'),
-        public_path('storage') => storage_path('app/images'),
+        public_path('json') => storage_path('app/json'),
+        public_path('images') => storage_path('app/images'),
     ],
 ];

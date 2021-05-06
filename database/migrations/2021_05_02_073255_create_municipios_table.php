@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMexicoAddressTable extends Migration
+class CreateMunicipiosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateMexicoAddressTable extends Migration
      */
     public function up()
     {
-        Schema::create('mexico_address', function (Blueprint $table) {
+        Schema::create('municipios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('city');
-            $table->string('capital');
-            $table->string('country');
+            $table->unsignedBigInteger('estado_id');
+            $table->string('clave');
+            $table->string('nombre');
+            $table->foreign('estado_id')->references('id')->on('estados');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +31,6 @@ class CreateMexicoAddressTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mexico_address');
+        Schema::dropIfExists('municipios');
     }
 }
