@@ -52,16 +52,15 @@ class PostUserController extends Controller
             $mexico = Localidad::with(['municipio' => function($query) {
                 $query->with('estado');
             }])->find($request->input('localidad_id'));
-
             $query = Address::create([
                 'user_id' => $request->input('user_id'),
                 'post_user_id' => $post_user->id,
-                'clave' => $mexico->clave,
-                'estado' => $mexico->municipio->estado->nombre,
-                'localidad' => $mexico->nombre,
-                'municipio' => $mexico->municipio->nombre,
-                'lat' => $mexico->lat,
-                'lng' => $mexico->lng,
+                'clave' => $mexico['clave'],
+                'estado' => $mexico['municipio']['estado']['nombre'],
+                'localidad' => $mexico['nombre'],
+                'municipio' => $mexico['municipio']['nombre'],
+                'lat' => $mexico['lat'],
+                'lng' => $mexico['lng'],
                 'address' => $request->input('address'),
             ]);
             

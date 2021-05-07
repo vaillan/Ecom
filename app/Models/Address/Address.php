@@ -23,6 +23,8 @@ class Address extends Model
         'localidad',
         'municipio',
         'address',
+        'lat',
+        'lng',
     ];
     /**
      * Get the address that owns the comment.
