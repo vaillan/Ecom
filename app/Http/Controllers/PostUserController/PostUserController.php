@@ -92,7 +92,7 @@ class PostUserController extends Controller
             ];
             $new_array_posts_user[] = $post;
         }
-        if($new_array_posts_user) {
+        if(count($new_array_posts_user) > 0) {
             return response()->json(['valid' => true,'posts_user' => $new_array_posts_user],200);
         }else {
             return response()->json(['failed' => false],200);
