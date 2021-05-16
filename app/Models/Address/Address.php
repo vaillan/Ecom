@@ -29,7 +29,4 @@ class Address extends Model
         'lat',
         'lng',
     ];
-    /**
-     * Get the address that owns the comment.
-     */
 }
