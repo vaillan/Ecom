@@ -47,11 +47,13 @@ class PostUserController extends Controller
                 'divisa_budget_minimum' => $request->input('divisa_budget_minimum'),
                 'divisa_budget_maximum' => $request->input('divisa_budget_maximum'),
                 'description' => $request->input('description'),
+                'localidad_id' => $request->input('localidad_id'),
             ]);
 
             $mexico = Localidad::with(['municipio' => function($query) {
                 $query->with('estado');
             }])->find($request->input('localidad_id'));
+
             $query = Address::create([
                 'user_id' => $request->input('user_id'),
                 'post_user_id' => $post_user->id,

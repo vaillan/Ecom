@@ -16,12 +16,14 @@ class CreatePostClientTable extends Migration
         Schema::create('post_client', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('image_id');
             $table->text('description');
-            $table->boolean('status')->default(false);
-            $table->float('precio');
+            $table->text('services');
+            $table->string('sale_status')->nullable(1);
+            $table->string('rent_status')->nullable(1);
+            $table->string('rent_status_by')->nullable(1);
+            $table->boolean('post_client_status')->default(false);
+            $table->float('price');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('image_id')->references('id')->on('images');
             $table->softDeletes();
             $table->timestamps();
         });

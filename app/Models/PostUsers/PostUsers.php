@@ -27,6 +27,7 @@ class PostUsers extends Model
         'divisa_budget_minimum',
         'divisa_budget_maximum',
         'description',
+        'localidad_id',
     ];
     /**
      * Get the user that owns the comment.
