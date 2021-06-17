@@ -40,4 +40,8 @@ class PostUsers extends Model
     public function address() {
         return $this->hasOne('App\Models\Address\Address', 'post_user_id');
     }
+
+    public function localidad() {
+        return $this->hasOne('App\Models\Localidad\Localidad', 'id', 'localidad_id');
+    }
 }

@@ -12,7 +12,7 @@ use App\Models\Localidad\Localidad;
 
 use Validator;
 use App\Helpers\GetFullUser;
-
+use App\User;
 class PostUserController extends Controller
 {
 
@@ -49,7 +49,6 @@ class PostUserController extends Controller
                 'description' => $request->input('description'),
                 'localidad_id' => $request->input('localidad_id'),
             ]);
-
             $mexico = Localidad::with(['municipio' => function($query) {
                 $query->with('estado');
             }])->find($request->input('localidad_id'));
