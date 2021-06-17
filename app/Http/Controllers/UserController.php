@@ -21,7 +21,7 @@ class UserController extends Controller
             $image_full = \time().'.'.$image->extension();
 
             //guardarla en la carpeta storage/app/users
-            Storage::disk( 'public' )->put($image_full, File::get($image));
+            Storage::disk('usersImg')->put($image_full, File::get($image));
 
             //setear el nombre de la imagen en el objeto user
             $user->image = $image_full;

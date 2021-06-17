@@ -28,4 +28,15 @@ class PostClient extends Model
     'post_client_status',
     'price',
     ];
+    /**
+     * Get the user that owns the comment.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
+    
+    public function address() {
+        return $this->hasOne('App\Models\Address\Address', 'post_client_id');
+    }
 }
