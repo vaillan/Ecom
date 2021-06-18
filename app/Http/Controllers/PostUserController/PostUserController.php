@@ -15,7 +15,6 @@ use App\Helpers\GetFullUser;
 use App\User;
 class PostUserController extends Controller
 {
-
     public function postUser(Request $request) {
         $carbon = new \Carbon\Carbon();
         $validator = Validator::make($request->all(), [
@@ -29,7 +28,6 @@ class PostUserController extends Controller
             'divisa_budget_maximum' => 'required',
             'localidad_id' => 'required',
             'address' => 'required',
-            
         ]);
         
         if($validator->fails()) {
@@ -37,18 +35,11 @@ class PostUserController extends Controller
         }else {
             $dt1 = $carbon->parse($request->input('init_date'))->locale('English');
             $dt2 = $carbon->parse($request->input('end_date'))->locale('English');
-            
-            $post_user = PostUsers::create([
-                'user_id' => $request->input('user_id'),
-                'budget_minimum' => $request->input('budget_minimum'),
-                'budget_maximum' => $request->input('budget_maximum'),
-                'init_date' => $dt1->format('Y-m-d'),
-                'end_date' => $dt2->format('Y-m-d'),
-                'divisa_budget_minimum' => $request->input('divisa_budget_minimum'),
-                'divisa_budget_maximum' => $request->input('divisa_budget_maximum'),
-                'description' => $request->input('description'),
-                'localidad_id' => $request->input('localidad_id'),
-            ]);
+            $createPostUser = $request->all();
+            $createPostUser['init_date'] = $dt1;
+            $createPostUser['end_date'] = $dt2;
+            $post_user = PostUsers::create($createPostUser);
+
             $mexico = Localidad::with(['municipio' => function($query) {
                 $query->with('estado');
             }])->find($request->input('localidad_id'));
