@@ -27,7 +27,6 @@ class UserController extends Controller
             $user->image = $image_full;
 
         }
-        //ejecutar consulta y cambios en la base de datos
         $save = $user->update() ? true : false;
         if($save) {
             $getFullUser = new GetFullUser();
