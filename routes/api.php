@@ -31,8 +31,8 @@ Route::group([
     Route::post('/updateImage', [UserController::class, 'updateUserImage']);
 
     //post user
-    Route::post('/post-user', [App\Http\Controllers\PostUserController\PostUserController::class, 'postUser']);
-    Route::get('/get-posts-user/{id}', [App\Http\Controllers\PostUserController\PostUserController::class, 'getPostUser']);
+    Route::post('/post-user', 'PostUserController\PostUserController@postUser');
+    Route::get('/get-posts-user/{id}', 'PostUserController\PostUserController@getPostUser');
 
     //Mexico address
     Route::post('/search-mexico-localidades', 'LocalidadController\LocalidadController@searchMexicoLocalidades');

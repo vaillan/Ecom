@@ -11,7 +11,7 @@ use App\Models\Municipio\Municipio;
 use App\Models\Localidad\Localidad;
 
 use Validator;
-use App\Helpers\GetFullUser;
+use App\Helpers\Helpers;
 use App\User;
 class PostUserController extends Controller
 {
@@ -39,11 +39,8 @@ class PostUserController extends Controller
             $createPostUser['init_date'] = $dt1;
             $createPostUser['end_date'] = $dt2;
             $post_user = PostUsers::create($createPostUser);
-
-            $mexico = Localidad::with(['municipio' => function($query) {
-                $query->with('estado');
-            }])->find($request->input('localidad_id'));
-
+            $getLocation = new Helpers();
+            $mexico = $getLocation->getLOcation($request->input('localidad_id'));
             $query = Address::create([
                 'user_id' => $request->input('user_id'),
                 'post_user_id' => $post_user->id,
@@ -65,7 +62,7 @@ class PostUserController extends Controller
     public function getPostUser($id) {
         $array_posts_user = PostUsers::with('user','address')->where('user_id',$id)->orderBy('id', 'desc')->get();
         $new_array_posts_user = array();
-        $getFullUser = new GetFullUser();
+        $getFullUser = new Helpers();
         foreach($array_posts_user as $post_user) {
             $post = [
                 'budget_maximum' => $post_user->budget_maximum,

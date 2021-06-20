@@ -4,8 +4,9 @@ namespace App\Helpers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
+use App\Models\Localidad\Localidad;
 
-class GetFullUser {
+class Helpers {
 
     public function getUserInfo($user) {
         if($user) {
@@ -30,6 +31,13 @@ class GetFullUser {
     public function getImages($filename) {
         $file = $filename ? Storage::disk('usersImg')->url($filename): null;
         return $file;
+    }
+
+    public function getLOcation($localidad_id) {
+        $location = Localidad::with(['municipio' => function($query) {
+            $query->with('estado');
+        }])->find($localidad_id);
+        return $location;
     }
 
 }

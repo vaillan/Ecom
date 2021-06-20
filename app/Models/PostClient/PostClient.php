@@ -22,11 +22,11 @@ class PostClient extends Model
     'user_id',
     'description',
     'services',
-    'sale_status',
-    'rent_status',
-    'rent_status_by',
+    'type_post',
+    'type_cost',
     'post_client_status',
     'price',
+    'divisa',
     ];
     /**
      * Get the user that owns the comment.

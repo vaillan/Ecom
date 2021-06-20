@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Helpers\GetFullUser;
+use App\Helpers\Helpers;
 use App\User;
 use Validator;
 
@@ -115,7 +115,7 @@ class AuthController extends Controller {
             
             $save = $user->update() ? true : false;
             if($save) {
-                $getFullUser = new GetFullUser();
+                $getFullUser = new Helpers();
                 return response()->json(['valid' => true, 'message' => 'datos actualizados correctamente', 'user' => $getFullUser->getUserInfo($user)],200);
             }
         }
@@ -150,7 +150,7 @@ class AuthController extends Controller {
      */
     protected function createNewToken($token){
 
-        $getFullUser = new GetFullUser();
+        $getFullUser = new Helpers();
         
         return response()->json([
             'access_token' => $token,

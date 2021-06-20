@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Helpers\GetFullUser;
+use App\Helpers\Helpers;
 use App\User;
 use File;
 use Storage;
@@ -29,7 +29,7 @@ class UserController extends Controller
         }
         $save = $user->update() ? true : false;
         if($save) {
-            $getFullUser = new GetFullUser();
+            $getFullUser = new Helpers();
             return response()->json(['valid' => true, 'message' => 'datos actualizados correctamente', 'user' => $getFullUser->getUserInfo($user)],200);
         }
     }

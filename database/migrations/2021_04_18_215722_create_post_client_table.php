@@ -18,9 +18,8 @@ class CreatePostClientTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->text('description');
             $table->text('services');
-            $table->string('sale_status')->nullable(1);
-            $table->string('rent_status')->nullable(1);
-            $table->string('rent_status_by')->nullable(1);
+            $table->string('type_post')->nullable(1);
+            $table->string('type_cost')->nullable(1);
             $table->boolean('post_client_status')->default(false);
             $table->float('price');
             $table->foreign('user_id')->references('id')->on('users');
