@@ -20,7 +20,7 @@ class CreatePostClientTable extends Migration
             $table->text('services');
             $table->string('type_post')->nullable(1);
             $table->string('type_cost')->nullable(1);
-            $table->boolean('post_client_status')->default(false);
+            $table->boolean('post_client_status')->nullable(1);
             $table->float('price');
             $table->foreign('user_id')->references('id')->on('users');
             $table->softDeletes();

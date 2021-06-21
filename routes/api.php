@@ -33,7 +33,8 @@ Route::group([
     //post user
     Route::post('/post-user', 'PostUserController\PostUserController@postUser');
     Route::get('/get-posts-user/{id}', 'PostUserController\PostUserController@getPostUser');
-
+    //post user client
+    Route::post('post-user-client', 'PostClientController\PostClientController@createPostClient');
     //Mexico address
     Route::post('/search-mexico-localidades', 'LocalidadController\LocalidadController@searchMexicoLocalidades');
 });

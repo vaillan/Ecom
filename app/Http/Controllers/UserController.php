@@ -25,7 +25,6 @@ class UserController extends Controller
 
             //setear el nombre de la imagen en el objeto user
             $user->image = $image_full;
-
         }
         $save = $user->update() ? true : false;
         if($save) {

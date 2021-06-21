@@ -24,7 +24,7 @@ class CreateAddressTable extends Migration
             $table->string('municipio');
             $table->string('lat');
             $table->string('lng');
-            $table->string('address');
+            $table->string('address')->nullable(1);
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('post_user_id')->references('id')->on('post_user');
             $table->foreign('post_client_id')->references('id')->on('post_client');
